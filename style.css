@@ -1,0 +1,110 @@
+body{
+    margin: 0!important ;
+    background-color: black!important;
+}
+
+/* Header */
+.large-header {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  background-color: black;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center center;
+  z-index: 1;
+}
+
+
+#large-header {
+    /* background-image: url("https://www.marcoguglie.it/Codepen/AnimatedHeaderBg/demo-1/img/demo-1-bg.jpg"); */
+    background-color: black
+}
+.main-title {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  color: #f9f1e9;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+}
+.demo-1 .main-title {
+  text-transform: uppercase;
+  font-size: 4.2em;
+  letter-spacing: 0.1em;
+}
+.main-title .thin {
+  font-weight: 200;
+}
+@media only screen and (max-width: 768px) {
+  .demo-1 .main-title {
+    font-size: 3em;
+  }
+}
+
+input{
+    background:none;
+}
+
+.main_container{
+    z-index:2;
+    position:absolute;
+    top: 60%;
+    left: 45%;
+    width: 200px;
+    max-width: 200px;
+}
+
+#ButtonInicial{
+    width: 100%;
+}
+#InputQuery{
+    margin-top: 30px;
+    width: 500px; 
+    border: none;
+    border-bottom: solid 2px white;
+    padding: 10px;
+    position: relative;
+    right: 150px;
+    text-align: center;
+    font-size: larger;
+    color: white;
+}
+#InputQuery:focus{
+    border: none;
+    border-bottom: solid 0.01em  #60e7ff;
+    box-shadow: 0 0.5em 0.5em -0.4em #60e7ff;
+    transform: translateY(-0.25em);
+    outline: none;
+    color: white;
+}
+
+
+
+
+/* boton */
+
+button {
+    color: var(--color);
+    transition: 0.25s;
+    background: none;
+    border: solid 1px rgba(36, 36, 36, 0.426);
+    padding: 10px;
+  }
+  button:hover, button:focus {
+    border-color: var(--hover);
+    color: #fff;
+  }
+
+.raise {
+    --color: white;
+    --hover: #60e7ff;
+}
+.raise:hover,
+.raise:focus {
+  box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+  transform: translateY(-0.25em);
+}
