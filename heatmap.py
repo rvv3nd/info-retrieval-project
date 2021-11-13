@@ -64,7 +64,7 @@ final_list = sorted_bag_of_words[0:TOP]
 
 h_word = [x[0] for x in final_list] #las TOP palabras mas comunes 
 # print(h_word) 
-h_docs = list(range(400, 400+len(clean_corpus))) #los documentos
+
 h_value = []
 
 for w in h_word:
@@ -75,6 +75,8 @@ for w in h_word:
     h_value.append(values)
 h_value = np.array(h_value)
 print(h_value)
+
+h_docs = list(range(400, 400+len(clean_corpus))) #los documentos
 
 
 fig, ax = plt.subplots()
@@ -101,4 +103,4 @@ for i in range(len(h_word)):
 
 fig.set_size_inches(200,30)
 fig.tight_layout()
-plt.savefig("./heat-maps/heat-map.png", dpi = 200)
+plt.savefig("./heat-maps/heat-map.png", dpi = 100)
