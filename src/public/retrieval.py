@@ -1,5 +1,6 @@
 from os import lseek
 import math
+import sys
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem.snowball import SnowballStemmer
@@ -37,10 +38,15 @@ stop_words.extend([',','.',';',':','(',')','%','.W','i.e'])         #se agregan 
 #stemm
 stemmer = SnowballStemmer("english") #se selecciona el idioma para el stemm
 
-corpus = open('Corpus-Med500.txt','r').read().split(".I") #se abre el archivo del corpus
+corpus = open('/Users/ruben/Desktop/RI/final/src/public/Corpus-Med500.txt','r').read().split(".I") #se abre el archivo del corpus
 corpus.pop(0) #el primer elemento sale vacio así que se elimina
 
-query = "the toxicity of organic selenium compounds" #se obtiene la query
+#query = sys.stdin.readline() #se obtiene la query
+n = int(sys.argv[1])-1
+query = ""
+for i in range(2,2+n):
+    query += sys.argv[i] + " "
+# print(query)
 
 #-----PRE-PROCESAMIENTO DE LA QUERY
 #se tokeniza la query
@@ -86,18 +92,15 @@ for w in query_tf:
         query_tf[w] = 0.5 + 0.5 * (f/(maxi*f))
 
 #--idf--doc
-
-
-idf_of_ = {w:[] for w in indexes} #es de la forma {w:[d1,d2,d3...dn]}
-for index in indexes: #obtiene las apariciones de cada index en todos los documentos
+idf_of_ = {w:[] for w in indexes}                                       #es de la forma {w:[d1,d2,d3...dn]}
+for index in indexes:                                                   #obtiene las apariciones de cada index en todos los documentos
     for doc in corpus_cleaned:#
         apariciones = 0 
-        if index in doc:#si definitivamente no contiene la palabra queda en 0 
-            for k in doc: #si la incluye entonces recorre el documento para contar las apariciones
+        if index in doc:                                                #si definitivamente no contiene la palabra queda en 0 
+            for k in doc:                                               #si la incluye entonces recorre el documento para contar las apariciones
                 if k == index: apariciones += 1
-        idf_of_[index].append(apariciones) #cada indice representa un documento
-# #este for entonces se hace n_indexes * n_numero_de_documentos
-
+        idf_of_[index].append(apariciones)                              #cada indice representa un documento
+                                                                        # #este for entonces se hace n_indexes * n_numero_de_documentos
 
 N = len(corpus_cleaned)
 
@@ -105,7 +108,6 @@ for word in indexes:
     for i in range(len(idf_of_[word])):
         if idf_of_[word][i] != 0:
             idf_of_[word][i] = math.log(N/float(idf_of_[word][i]))
-
 
 #-idf-query
 query_idf = {w:0 for w in indexes}
@@ -120,17 +122,13 @@ for word in query_idf:
 
 
 #---tf_idf-doc
-
 tf_idf = {w:[] for w in indexes}
-
 for word in tf_idf:
     for i in range (len(corpus_cleaned)):
         tf_idf[word].append(tf_of_[word][i]*idf_of_[word][i])
 
 
 #---tf-idf-query
-
-
 query_tf_idf = {w:0 for w in indexes}
 for word in query_tf_idf:
     if word in query_ready:
@@ -163,6 +161,7 @@ all_rank = sorted(sim_doc.items(), key=lambda x: x[1], reverse=True)
 
 print(all_rank[:5])
 
+sys.stdout.flush()
     
 
 # print(len(tf_idf))

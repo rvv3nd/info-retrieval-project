@@ -16,10 +16,23 @@ $(function(){
 
     socket.on('getting ranking',function(rank){
         $('#loading').hide()
-        for(element of rank){
-            $('#response').append('<p>'+element+'</p><br>')
+        console.log(typeof(rank))
+        rank_ = clean(rank)
+        for(let i=0;i<rank_.length;i+=2){
+            $('#response').append('<p>'+rank_[i]+':'+rank_[i+1]+'</p><br>')
         }
         $('#reload').show()
     })
 
 })
+
+function clean(string){
+    to_delete = ['(',')','[',']']
+    let cleanS = ""
+    for(c of string){
+        if(to_delete.includes(c) == false){
+            cleanS += c
+        }
+    }
+    return cleanS.split(",")
+}
