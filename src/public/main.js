@@ -19,7 +19,7 @@ $(function(){
         console.log(typeof(rank))
         rank_ = clean(rank)
         for(let i=0;i<rank_.length;i+=2){
-            $('#response').append('<p>'+rank_[i]+':'+rank_[i+1]+'</p><br>')
+            $('#response').append('<p>Documento:'+rank_[i]+' Peso:'+rank_[i+1]+'</p><br>')
         }
         $('#reload').show()
     })

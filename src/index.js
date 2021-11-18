@@ -9,7 +9,7 @@ const server = http.createServer(app)
 const io = socketio(server)
 
 app.set('port', process.env.PORT || PORT)
-require('./sockets')(io)
+require('./public/sockets')(io)
 //pasa los archivos estaticos
 app.use(express.static(path.join(__dirname,'public')))
 
