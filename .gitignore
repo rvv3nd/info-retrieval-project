@@ -1,0 +1,6 @@
+*.txt
+info-retrieval
+node_modules/
+info-ret/
+corpus.pdf
+getPDF.py
