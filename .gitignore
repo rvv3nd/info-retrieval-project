@@ -1,6 +1,6 @@
 *.txt
 info-retrieval
 node_modules/
-info-ret/
+src/public/info-ret/
 corpus.pdf
 getPDF.py
